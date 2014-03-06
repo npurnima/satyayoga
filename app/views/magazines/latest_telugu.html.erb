@@ -1,0 +1,31 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Magazines',latest_telugu_english_magazines_path %> >
+  <%= 'Latest Telugu Magazine' %>
+</div>
+<div class="leftbar">
+  <%= render 'magazine_options' %>
+</div>
+
+
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <h2>The Latest Telugu Magazine</h2>
+  <% @magazines.each do |magazine|%>
+  <p> <b> Title:  </b>
+
+    <%= magazine.title %> <br/>  </p>
+
+  <div class="medium-img">
+    <%= link_to  image_tag(magazine.coverpageimage,:class => 'medium-img'), reading_magazine_path(magazine.id) %>
+  </div>
+  <p><b>Language Written:</b> <%= magazine.languagewritten %></p>
+  <p><b>Published In:</b><%=Magazine.get_month(magazine.month) %>/<%= magazine.year %></p>
+  <div class="links">
+    <% if session[:user_id] && session[:privilage] == 1 %>
+        <%= link_to 'Add New Magazine',new_magazine_path %> |
+        <%= link_to 'Edit', edit_magazine_path(magazine) %> |
+        <%= link_to 'Back', magazines_path %>
+    <% end  %>
+  </div>
+    <% end %>
+</div>

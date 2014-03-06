@@ -1,0 +1,15 @@
+
+<% @upcoming_events.each do |event|%>
+
+    <div class="news_section">
+      <div class="news_date"><%= event.starttime.strftime("%B") %>
+                             <%= event.starttime.day %> ,
+                             <%= event.starttime.year %></div>        <!-- Printing date in month name form -->
+
+      <div class="news_title"><%= event.name %></div>
+      <p><%= event.description %> <%= link_to 'Read more',event_path(event) %></p>
+    </div>
+
+    <div class="margin_bottom_30"></div>
+<%end%>
+

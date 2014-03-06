@@ -1,0 +1,19 @@
+<div class="main-content">
+<% @page_title ="User Profile View" %>
+
+<div class="blogger_section">
+
+    <%= image_tag(@user.photo,:class =>'medium-img') %>
+
+    <b>Name:</b>  <span class="blogger_name"> <%= @user.firstname +  "  "  + @user.lastname %> </span> <br/>
+    <b>Username:</b> <span class="blogger_date">  <%= @user.username %> </span>    <br/>
+    <b>Email :</b>     <%= @user.email %> </br>
+    <b>Role:</b>    <%= @user.userrole.role.name %>  <br/>
+ </div>
+ <div class="links">
+    <% if @user.id == session[:user_id]  %>
+         <%= link_to 'Edit', edit_user_path(@user) %> |
+         <%= link_to 'Back', :back %>
+      <% end %>
+  </div>
+</div>

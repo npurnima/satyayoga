@@ -1,0 +1,18 @@
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <h2>User Comments on <%= @event.name %></h2>
+   <% @eventcomments.each do |comment|%>
+     <% @user = User.find(comment.user_id)  %>
+   <div class="comments">
+        <div class="user-img">
+            <%= image_tag(@user.photo,:class => 'img-icon')  %>
+        </div>
+        <div class="user-comment">
+            <%= @user.firstname %>  <br/>
+            <%= comment.comment %>
+        </div>
+
+    </div>
+    <% end%>
+
+</div>

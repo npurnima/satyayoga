@@ -1,0 +1,113 @@
+    <%= form_for :create_multiple,:url => {:action => 'create_multiple', :controller => 'schedules', :id => params[:id]} do |f| %>
+
+    <%= fields_for :schedule1  do |f1|%>
+        <b> Activity 1 </b> <br/>
+         <%= f1.hidden_field :event_id %>
+         <%= f1.label :date %>
+         <%= f1.select :date, options_for_select(Schedule:: Schedule.get_event_dates(params[:id])) %>  <br/> <br/>
+         <%= f1.label :title %>
+         <%= f1.text_field :title %>  <br/> <br/>
+         <%= f1.label :start_Time %><br />
+         <%= f1.time_select(:start_time, :ampm => true) %> <br/>  <br/>
+         <%= f1.label :end_Time %><br />
+         <%= f1.time_select(:end_time, :ampm => true) %> <br/> <br/>
+         <% if @event.event_type.to_s == 'Regular' %>
+              <%= f1.label :next_event %><br/>
+              <%= f1.select :next_event,options_for_select(Schedule::REPEAT) %>
+         <% end %>   <br/><br/>
+     <% end %>
+    <div class="divider"></div>
+
+    <%= fields_for :schedule2  do |f2|%>
+        <b>  Activity 2  </b>  <br/>
+        <%= f2.hidden_field :event_id %>
+        <%= f2.label :date %>
+        <%= f2.select :date, options_for_select(Schedule:: Schedule.get_event_dates(params[:id])) %>  <br/> <br/>
+        <%= f2.label :title %>
+        <%= f2.text_field :title %>  <br/> <br/>
+        <%= f2.label :start_Time %><br />
+        <%= f2.time_select(:start_time, :ampm => true) %> <br/>  <br/>
+        <%= f2.label :end_Time %><br />
+        <%= f2.time_select(:end_time, :ampm => true) %> <br/> <br/>
+        <% if @event.event_type.to_s == 'Regular' %>
+            <%= f2.label :next_event %><br/>
+            <%= f2.select :next_event,options_for_select(Schedule::REPEAT) %>
+        <% end %>   <br/><br/>
+    <% end %>
+    <div class="divider"></div>
+
+    <%= fields_for :schedule3  do |f3|%><br/>
+         <b><br/>Activity 3 </b>  <br/>
+        <%= f3.hidden_field :event_id %>
+        <%= f3.label :date %>
+        <%= f3.select :date, options_for_select(Schedule:: Schedule.get_event_dates(params[:id])) %>  <br/> <br/>
+        <%= f3.label :title %>
+        <%= f3.text_field :title %>  <br/> <br/>
+        <%= f3.label :start_Time %><br />
+        <%= f3.time_select(:start_time, :ampm => true) %> <br/>  <br/>
+        <%= f3.label :end_Time %><br />
+        <%= f3.time_select(:end_time, :ampm => true) %> <br/> <br/>
+        <% if @event.event_type.to_s == 'Regular' %>
+            <%= f3.label :next_event %><br/>
+            <%= f3.select :next_event,options_for_select(Schedule::REPEAT) %>
+        <% end %>   <br/><br/>
+
+    <% end %>
+     <div class="divider"></div>
+
+    <%= fields_for :schedule4  do |f4|%> <br/>
+         <b> Activity 4</b>  <br/>
+        <%= f4.hidden_field :event_id %>
+        <%= f4.label :date %>
+        <%= f4.select :date, options_for_select(Schedule:: Schedule.get_event_dates(params[:id])) %>  <br/> <br/>
+        <%= f4.label :title %>
+        <%= f4.text_field :title %>  <br/> <br/>
+        <%= f4.label :start_Time %><br />
+        <%= f4.time_select(:start_time, :ampm => true) %> <br/>  <br/>
+        <%= f4.label :end_Time %><br />
+        <%= f4.time_select(:end_time, :ampm => true) %> <br/> <br/>
+        <% if @event.event_type.to_s == 'Regular' %>
+            <%= f4.label :next_event %><br/>
+            <%= f4.select :next_event,options_for_select(Schedule::REPEAT) %>
+        <% end %>   <br/><br/>
+    <% end %>
+    <div class="divider"></div>
+
+    <%= fields_for :schedule5  do |f5|%>
+         <b>  Activity 5   </b> <br/>
+        <%= f5.hidden_field :event_id %>
+        <%= f5.label :date %>
+        <%= f5.select :date, options_for_select(Schedule:: Schedule.get_event_dates(params[:id])) %>  <br/> <br/>
+        <%= f5.label :title %>
+        <%= f5.text_field :title %>  <br/> <br/>
+        <%= f5.label :start_Time %><br />
+        <%= f5.time_select(:start_time, :ampm => true) %> <br/>  <br/>
+        <%= f5.label :end_Time %><br />
+        <%= f5.time_select(:end_time, :ampm => true) %> <br/> <br/>
+        <% if @event.event_type.to_s == 'Regular' %>
+            <%= f5.label :next_event %><br/>
+            <%= f5.select :next_event,options_for_select(Schedule::REPEAT) %>
+        <% end %>   <br/><br/>
+    <% end %>
+    <div class="divider"></div>
+
+    <%= fields_for :schedule6  do |f6|%>
+         <b>  Activity 6   </b> <br/>
+        <%= f6.hidden_field :event_id %>
+        <%= f6.label :date %>
+        <%= f6.select :date, options_for_select(Schedule:: Schedule.get_event_dates(params[:id])) %>  <br/> <br/>
+        <%= f6.label :title %>
+        <%= f6.text_field :title %>  <br/> <br/>
+        <%= f6.label :start_Time %><br />
+        <%= f6.time_select(:start_time, :ampm => true,:hidesec => true) %> <br/>  <br/>
+        <%= f6.label :end_Time %><br />
+        <%= f6.time_select(:end_time, :ampm => true, :hidesec=> true) %> <br/> <br/>
+        <% if @event.event_type.to_s == 'Regular' %>
+            <%= f6.label :next_event %><br/>
+            <%= f6.select :next_event,options_for_select(Schedule::REPEAT) %>
+        <% end %>   <br/><br/>
+    <% end %>
+    <div class="divider"></div>
+
+    <%=f. submit "Add Schedules" %>
+<% end %>

@@ -1,0 +1,26 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= 'Albums' %>
+
+</div>
+<div class= "main-content">
+<h2>List of All Albums</h2>
+
+
+
+<% @albums.each do |album| %>
+  <div class="alb-item">
+        <p><%= album.title %></p>
+        <p><%= link_to(image_tag(album.coverpage, :class =>'alb-medium-img'),all_album_photos_path(album.id) ) %>
+       </p>
+
+      <p><% album.caption %></p>
+
+  </div>
+
+<% end %>
+<div class="links">
+  <% if session[:user_id] && session[:privilage] <=2 %>
+     <%= link_to 'Add New Album', new_album_path %>
+  <%end%>
+</div>
+ </div>

@@ -1,0 +1,12 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Saadhakas List',saadhakas_by_guide_path(session[:user_id]) %>  >
+  <%= 'Assign a Course To a Saadhaka' %>
+</div>
+<div class="main-content">
+
+  <p id="notice"><%=  notice %></p>
+  <h2>Assign A Course To A '<%= @user.firstname %>'</h2>
+
+  <%= render 'assign_a_course_form' %>
+
+</div>

@@ -1,0 +1,14 @@
+<div class= "main-content">
+  <h3>Album Details</h3>
+<p id="notice"><%= notice %></p>
+
+<p> <h3> <%= @album.title %>     </h3> </p>
+
+<p>  <%= image_tag(@album.coverpage, :class => 'medium-img') %> </p>
+<p>   <%= @album.caption %></p>
+
+<%= link_to 'Add a photo to Album', album_new_photos_path(params[:id]) %>   <br/>
+<%= link_to 'Add a Multiple photos to Album', album_new_multiple_photos_path(params[:id]) %>
+<%= link_to 'Edit', edit_album_path(@album) %>
+
+ </div>

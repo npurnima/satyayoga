@@ -1,0 +1,31 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<!-- include Cycle plugin -->
+<script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.latest.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#slideshow-images').cycle({
+            fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+        });
+    });
+ </script>
+<div class="header-breadcrumbs">
+<%= link_to 'Home',homepages_path %> > <%= link_to 'Albums',albums_path %> >
+  <%=link_to Album.find(params[:id]).title,all_album_photos_path(params[:id]) %> > <%= 'Slide show' %>
+</div>
+<div class="main-content">
+
+  <h2>Album Slide Show </h2>
+  <div class="alb-slide-show">
+
+  <div class="slideshow">
+    <div id="slideshow-images">
+        <% @photos.each do |photo| %>
+
+            <%= image_tag(photo.title, :class =>'photo-large-img') %>
+
+        <%end%>
+    </div>
+  </div>
+  </div>
+</div>

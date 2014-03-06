@@ -1,0 +1,29 @@
+<%= form_for(@course, :html =>{ :multipart => true }) do |f| %>
+
+    <% if @course.errors.any? %>
+        <div id="error_explanation" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+             xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+          <h2><%= pluralize(@course.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+          <ul>
+            <% @course.errors.full_messages.each do |msg| %>
+                <%= msg %>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form">
+
+      <%= f.label "Course Name:" %>
+      <%= f.text_field :name %> </br>
+      <%= f.label "Course Introduction:" %>
+      <%= f.text_field :description %> </br>
+
+      <%= f.label "Edit Course File:" %>
+      <%= f.file_field :filepath %>  </br>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

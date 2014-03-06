@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>Satyayoga</title>
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css">
+  <script type="text/javascript" src="//code.jquery.com/ui/1.9.0/jquery-ui.js" ></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/jquery-1.8.2.js"></script>
+
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//resources/demos/style.css"/>
+
+
+      <script>
+          $(function() {
+              $( '.datepicker' ).datepicker({ dateFormat: "yy-mm-dd",  changeMonth: true,  changeYear: true  });
+          });
+      </script>
+</head>
+<body>
+
+<div id="templatemo_header_wrapper">
+  <div id="templatemo_header">
+    <div id="site_title_section">
+      <div id="site_title">
+       Yoga School   <br/><br/>
+       <div class="slogan">
+          Piduguralla </div>
+
+      </div>
+
+      <div class="cleaner">&nbsp;</div>
+    </div>
+
+    <div id="search_section">
+      <%= render 'search/search_section' %>    <br/>
+
+        <% if session[:user_id] %>
+          <p>
+            <b class="rc_btn_03"> Welcome! <%= session[:username].capitalize %>  </b>
+           <span class="rc_btn_03" ><%=link_to 'Sign Out',user_signout_path(session[:user_id])%> </span>
+           <span class="rc_btn_03" > <%=link_to 'Update Your Profile',edit_user_path(session[:user_id])%></span>
+          </p>
+        <%else%>
+          <p>
+            <b class="rc_btn_03"><%=link_to 'Sign In',user_signin_path(0)%> </b>
+            <b class="rc_btn_03"><%=link_to 'Register',new_user_path %> </b> </p>  <br/>
+        <%end%>
+    </div>
+  </div> <!-- end of header -->
+</div>  <!-- end of header wrapper -->
+
+<div id="templatemo_banner_wrapper">
+  <div id="templatemo_banner">
+
+    <div id="banner_header_01">Satya Yoga Sadhaka Mandali</div><br/>
+    <div id="banner_header_02">Master CVV Namaskaram.. </div>
+    <div id="banner_text">
+      <p> Briktha Rahitha Taraka Raja Yoga is a spiritual exercise that is beyond all religions. One should
+
+        have a determined ambition to realize and become  perfect being (Brahmam) by practicing this yoga.
+
+        This yoga gives an opportunity to the individuals to transform themselves to divinity.</p>
+      <div class="rc_btn_01"><%= link_to 'Continue reading...', 'continue_page' %></div>
+    </div>
+  </div>	<!-- end of banner -->
+</div> <!-- end of banner wrapper -->
+
+<div id="templatemo_menu_wrapper">
+  <div id="templatemo_menu">
+    <ul>
+      <li><%= link_to 'Home',homepages_path, :title=>'Home Page' %></li>
+      <li><%= link_to 'Events', events_path, :title =>'The list of all upcoming events' %> </li>
+      <li><%= link_to 'Magazines', latest_telugu_english_magazines_path,:title => 'Latest Telugu and English Magazines' %></li>
+      <li><%= link_to 'Albums', albums_path, :title => 'List of Albums '  %> </li>
+      <li><%= link_to 'Discussions',experiences_path,:title=>'Discussion Forum' %></li>
+      <% if (session[:user_id] != nil)&&(session[:privilage] <= 2)  %>
+          <li><%= link_to 'Courses',courses_path,:title=>'Details of all the courses' %></li>
+          <li><% link_to 'Treatment Groups', :title=>'Treatment Group' %></li>
+          <li><%= link_to 'My Page',mypage_path(session[:user_id]),:title => 'My information and all the accessible links' %> </li>
+
+      <% else if (session[:user_id] != nil)&&(session[:privilage] >= 3) %>
+
+              <li><%= link_to 'My Page',mypage_path(session[:user_id]), :title => 'My information and all the accessible links' %> </li>
+
+          <% end  end%>
+    </ul>
+  </div> <!-- end of menu -->
+</div> <!-- end of menu wrapper -->
+
+<div id="templatemo_content_wrapper">
+  <div id="templatemo_content">
+
+    <div id="content_left">
+      <div class="content_left_section">
+        <div class="content_header_01">Upcoming Events</div>
+            <%= render 'events/first_two_upcoming_events' %>
+
+        <div class="rc_btn_02"><%= link_to 'View All', events_path %></div>
+        <div class="cleaner"></div>
+
+      </div>   <!-- end of news section -->
+
+      <div class="margin_bottom_20 border_bottom"></div>
+      <div class="margin_bottom_20"></div>
+
+      <div class="content_left_section">
+        <div class="content_header_01">Popular Blog Writers </div>
+
+        <div class="blogger_section">
+          <img src="/assets/jnm.JPG"/>
+          Name:<span class="blogger_name"> Narayana Murthy. Janapati   </span> <br/>
+          With Us From: <span class="blogger_date"> 2 years</span>  <br/>
+          Blogs Written: <span> sodales. </span> <div> <a href="#">Read more..</a></div>
+
+        </div>
+
+        <div class="cleaner"></div>
+        <div class="margin_bottom_20"></div>
+
+        <div class="blogger_section">
+          <img src="/assets/purnima.JPG"/>
+          Name:<span class="blogger_name"> Purnima Namuduri   </span> <br/>
+          With Us From: <span class="blogger_date"> 2 years</span>  <br/>
+          Blogs Written: <span> sodales. </span> <div> <a href="#">Read more..</a></div>
+
+        </div>
+
+        <div class="cleaner"></div>
+        <div class="margin_bottom_20"></div>
+
+        <div class="blogger_section">
+          <img src="/assets/saadhaka_image.jpeg"/>
+          Name:<span class="blogger_name"> Rama Chandra rao  </span> <br/>
+          With Us From: <span class="blogger_date"> 2 years</span>  <br/>
+          Blogs Written: <span> sodales. </span> <div> <a href="#">Read more..</a></div>
+
+        </div>
+
+        <div class="cleaner"></div>
+        <div class="margin_bottom_20"></div>
+
+
+        <div class="rc_btn_02"><a href="#">View All</a></div>
+      </div>       <!-- end of popular bloggers div -->
+
+      <div class="margin_bottom_20 border_bottom"></div>
+      <div class="margin_bottom_20"></div>
+
+      <div class="content_left_section">
+        <div class="content_header_01">Latest Magazines </div>
+              <%= render 'magazines/latest_two_telugu_magazines' %>
+      <div class="cleaner_h30">&nbsp;</div>
+      </div>
+     </div> <!-- end of content left -->
+
+    <div id="content_right">
+
+      <div class="content_right_500_section margin_right_25">
+        <div class="content_header_01"><%= @page_title %></div>
+        <div class="image_wrapper"><img src="/assets/simble 02.jpg" alt="image 1" /></div>
+        <div id="notice"><%= notice %></div>
+        <div class="main_content"> <%= yield %></div>
+
+      <div class="content_right_340_section" >
+        <div class="content_header_01">Latest discussions </div>
+         <p>These are the latest and popular topics in recently! </p>
+
+          <ul>
+            <li><a href="">Cras metus lectus</a></li>
+            <li><a href="">Mauris vitae lacinia tortor</a></li>
+            <li><a href="">Suspendisse potenti</a></li>
+            <li><a href="">Pellentesque tincidunt magna</a></li>
+          </ul>
+
+          <div class="cleaner"></div>
+
+          <div class="rc_btn_02"><a href="#">View All</a></div>
+
+          <div class="cleaner"></div>
+      </div>                <!-- end of latest discussion section -->
+
+        <div class="margin_bottom_20 border_bottom"></div>
+        <div class="margin_bottom_20"></div>
+
+      </div>
+    <div class="content_right_section">
+      <div class="content_header_02">Direct Mediums for Yoga School</div>
+
+      <div class="content_right_w620_wrapper">
+        <div class="content_right_w620_inner">
+          <div class="box_w120 margin_right_25">
+            <div class="image_wrapper"><a href="#"><img  src="/assets/master.jpg" alt="image 2" /></a></div>
+            <p>Master CVV. The founder of Briktha Rahita Taaraka Raaja Yoga</p>
+          </div>
+
+          <div class="box_w120 margin_right_25">
+            <div class="image_wrapper"><a href="#"><img src="/assets/mother.jpeg" alt="image 2" /></a></div>
+            <p>Mother. Wife of Master CVV</p>
+          </div>
+
+          <div class="box_w120 margin_right_25">
+            <div class="image_wrapper"><a href="#"><img src="/assets/master MN.png" alt="image 3" /></a></div>
+            <p>Master MN. Follower of Master CVV </p>
+          </div>
+
+          <div class="box_w120">
+            <div class="image_wrapper"><a href="#"><img src="/assets/masterMBS.png" alt="image 4" /></a></div>
+            <p>Master MBS. Follower of Master MN and also the founder of Piduguralla Yoga school</p>
+          </div>
+
+
+          <div class="margin_bottom_10"></div>
+
+          <div class="rc_btn_02"><a href="#">View all</a></div>
+
+          <div class="cleaner"></div>
+        </div>
+      </div>
+
+    </div>
+
+      <div class="cleaner">&nbsp;</div>
+    </div>
+    <div class="cleaner_h20">&nbsp;</div>
+  </div> <!-- end of content right -->
+
+  <div class="cleaner">&nbsp;</div>
+
+</div> <!-- end of content -->
+</div> <!-- end of content wrapper -->
+
+<div id="templatemo_footer_wrapper">
+  <div id="templatemo_footer">
+    Copyright © 2014 Satya Yoga Sadhaka Mandali |
+
+  </div><!-- end of footer -->
+</div><!-- end of footer wrapper -->
+
+</body>
+</html>
+
+

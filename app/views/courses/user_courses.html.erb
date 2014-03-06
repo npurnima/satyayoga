@@ -1,0 +1,39 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Courses',courses_path %> ><%=  link_to 'My Page',mypage_path(session[:user_id])%>  >
+  <%= 'My Courses' %>
+
+</div>
+<div class= "main-content">
+  <p id="notice" ><%=  notice %></p>
+  <h2>List of <%= session[:username] %>'s courses</h2>
+
+  <table>
+
+    <tr>
+      <th></th>
+      <th>CourseName</th>
+      <th>Description</th>
+      <th>Assign to </th>
+      <th>Owner Options</th>
+    </tr>
+
+    <% @courses.each do |course| %>
+        <tr>
+          <td><%= link_to image_tag("background_images/books.jpeg",:class => 'img-icon'),reading_course_path(course.id) %></td>
+          <td><%= link_to course.name,reading_course_path(course.id) %></td>
+          <td><%= course.description %></td>
+          <td><%= link_to 'Assign To',new_usercourse_path(course.id) %></td>
+          <td><% if session[:user_id] == course.owner || session[:privilage] == 1%>
+                    <%= link_to 'Edit', edit_course_path(course) %> |
+                    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+
+  <br />
+  <% if session[:user_id] && session[:privilage] <= 2%>
+    <div class="links"> <h4> <%= link_to ' Add New Course', new_course_path %> </h4>  </div>
+  <% end %>
+</div>

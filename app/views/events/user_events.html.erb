@@ -1,0 +1,42 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Events',upcoming_events_path %> >
+  <%= 'My Events' %>
+</div>
+<div class="main-content">
+
+  <% @page_title = "List of #{session[:username]}'s Events" %>
+
+  <table>
+
+    <tr>
+      <th></th>
+      <th>EventName</th>
+      <th>Location</th>
+      <th>Starts On</th>
+      <th>Ends On</th>
+      <th>Owner Options</th>
+    </tr>
+
+    <% @events.each do |event| %>
+
+        <tr>
+          <td><%= image_tag("background_images/upcomming_event_icon.gif",:class =>'img-icon') %></td>
+          <td><%=link_to event.name, event %></td>
+          <td><%= event.location %></td>
+          <td><%= event.starttime.to_date %></td>
+          <td><%= event.endtime.to_date %></td>
+          <td> <% if session[:user_id]== event.owner %>
+                    <%= link_to 'Edit',edit_event_path(event.id) %>
+                    <%= link_to 'Delete',event, method: :delete, data: { confirm:"Are Sure you want to remove this event?"}  %>
+                <% end %>
+          </td>
+
+        </tr>
+    <% end %>
+  </table>
+
+  <br />
+  <% if session[:user_id] && session[:privilage] <= 2 %>
+      <%= link_to 'New Event', new_event_path %>
+  <% end %>
+</div>

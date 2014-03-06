@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+
+Dear <%= @email.email_to %>,  <br/>
+    <%= "#{@email.email_body}" %>
+
+<br/>
+<br/>
+<p>
+  Thanks<br/>
+  <%= @email.email_from %>
+</p>
+
+</body>
+
+</html>

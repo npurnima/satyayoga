@@ -1,0 +1,34 @@
+<head>
+  <script>
+      $(function() {
+          $( "#tabs" ).tabs();
+      });
+  </script>
+</head>
+
+
+<div class="main-content">
+  
+<% @page_title ="Listing of all Events" %>
+
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Special Events</a></li>
+      <li><a href="#tabs-2">Regular Events</a></li>
+      <li><a href="#tabs-3">Past Events</a></li>
+    </ul>
+    <div id="tabs-1">
+      <%= render 'special_events'%>
+    </div>
+    <div id="tabs-2">
+      <%= render 'regular_events' %>
+    </div>
+    <div id="tabs-3">
+      <%= render 'past_events' %>
+    </div>
+  </div>
+
+
+
+
+</div>

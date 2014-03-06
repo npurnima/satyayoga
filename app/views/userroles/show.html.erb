@@ -1,0 +1,24 @@
+<div class="main-content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @userrole.user_id %>
+  <%= User.find(@userrole.user_id).username %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%= @userrole.role_id %>
+  <%= Role.find(@userrole.role_id).name %>
+</p>
+
+<p>
+  <b>Assigned by:</b>
+  <%= @userrole.assigned_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_userrole_path(@userrole) %> |
+<%= link_to 'Back', userroles_path %>
+</div>

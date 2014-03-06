@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Exp:</b>
+  <%= @expcomment.exp_id %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @expcomment.owner %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @expcomment.description %>
+</p>
+
+<p>
+  <b>No of views:</b>
+  <%= @expcomment.no_of_views %>
+</p>
+
+<p>
+  <b>Comment type:</b>
+  <%= @expcomment.comment_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_expcomment_path(@expcomment) %> |
+<%= link_to 'Back', expcomments_path %>

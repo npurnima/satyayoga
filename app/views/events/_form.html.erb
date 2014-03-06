@@ -1,0 +1,79 @@
+
+<%= form_for(@event) do |f| %>
+
+  <% if @event.errors.any? %>
+        <div id="error_explanation" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+             xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @event.errors.full_messages.each do |msg| %>
+        <li><%= msg %> </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="form">
+
+      <div>
+        <%= f.label "Event Name:" %>
+        <%= f.text_field :name %> * <br/>
+      </div>
+      <div>
+        <%= f.label "Event Description:" %>
+        <%= f.text_field :description %> <br/>
+      </div>
+      <div>
+        <%= f.label "Location:" %>
+        <%= f.text_field :location %> * <br/>
+      </div>
+      <div>
+        <%= f.label "Start Date:" %>
+        <%= f.text_field :starttime, :class => 'datepicker' %> * <br/>
+      </div>
+      <div>
+        <%= f.label "End Date:" %>
+        <%= f.text_field :endtime, :class => 'datepicker' %> * <br/>
+      </div>
+      <div>
+        <%= f.label "Email:" %>
+        <%= f.email_field :email %> *      <br/>
+      </div>
+      <div>
+        <%= f.label "Phone Number:" %>
+        <%= f.text_field (:phone_number)%> *    <br/>
+      </div>
+      <div>
+        <%= f.label "Street Address:" %>
+        <%= f.text_field :street_address %>   <br/>
+      </div>
+      <div>
+        <%= f.label "City Address:" %>
+        <%= f.text_field :city_address %>   <br/>
+      </div>
+      <div>
+        <%= f.label "State:" %>
+        <%= f.text_field :state %>   <br/>
+      </div>
+      <div>
+        <%= f.label "Zip Code:" %>
+        <%= f.text_field :zip_code%>   <br/>
+      </div>
+      <div>
+        <%= f.label "Country:" %>
+        <%= f.text_field :country %>    <br/>
+      </div>
+        <%= f.hidden_field :owner %>  <br/>
+      <div>
+        <%= f.label "Event Type:"%>
+        <%= f.radio_button :event_type, 'Special' %> <b> Special Event </b>
+        <%= f.radio_button :event_type, 'Regular'  %> <b> Regular Event </b>  *<br/>
+      </div>
+
+    </div>    <br/>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

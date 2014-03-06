@@ -1,0 +1,69 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to'Experiences',experiences_path %> ><%= @experience.topic  %>
+</div>
+
+<!--<div class="topic-list">
+  <h3>Topics Under Discussion</h3>
+  <ul>
+  <% @experiences.each do |exp| %>
+
+    <li>  <%= link_to exp.topic, expcomments_path(exp.id) %>     </li>
+    <br/>
+  <% end %>
+  </ul>
+  <%= link_to 'Start New Topic', new_experience_path %>
+</div>       -->
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <div class="comments">
+
+      <div class="topic">
+        <p><b><%= @experience.topic %></b></p>
+        <div class="user-details">
+          <div class="user-img">
+            <%= image_tag(@user.photo,:class => 'img-icon') %>
+          </div>
+          <div class="user-name">
+            <%= link_to @user.firstname.capitalize,user_path(@user.id) %>
+            <i><%= distance_of_time_in_words(DateTime.now,@experience.created_at) %> ago     <br/>  </i>
+          </div>
+          <div class="user-comment">
+            <%= @experience.description %>
+          </div>
+            <i class="comment-count"> Comments <%= @expcomments.count + @private_comments.count  %>  Private (<%= @private_comments.count %>) </i>
+          </div>
+      </div>  <br/>
+    <% @expcomments.each do |expcomment| %>
+      <div class="user-details">
+
+        <% @commentuser = User.find(expcomment.owner)   %>
+
+        <div class="user-img">
+          <%= image_tag(@commentuser.photo,:class => 'img-icon') %>
+        </div>
+        <div class="user-name">
+          <%= link_to @commentuser.firstname.capitalize,user_path(@commentuser.id) %>
+          <i><%= distance_of_time_in_words(DateTime.now,expcomment.created_at) %>  ago    <br/> </i>
+        </div>
+        <div class="user-comment">
+          <%= expcomment.description.capitalize %>
+          <%= expcomment.no_of_views %>
+        </div>
+      </div>
+    <% end %>
+    <% if session[:user_id] %>
+        <%= render 'exp_user_private_comment' %>
+    <%end %>
+    <br/>    <br/>
+ </div>
+  <br/> <br/>
+  <div class="divider"><p></p></div>
+  <% if session[:user_id] %>
+    <%= render 'expcomments/form' %>
+  <% else %>
+     <%= link_to 'Add Your Comment',new_expcomment_path(@experience.id) %>  |
+  <% end %>
+  <%= link_to 'Start New Topic', new_experience_path %>
+</div>
+
+</div>

@@ -1,0 +1,15 @@
+/**
+ * Created with JetBrains RubyMine.
+ * User: purnima
+ * Date: 3/30/13
+ * Time: 3:03 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+<% if session[:user_id] %>
+   $('#comment_form').html("<h3>Share your comment on  ' <%= @event.name %> '<h3>");
+   $('#display-add-comment').html("<%= escape_javascript (render 'eventcomments/form') %>");
+
+<% else %>
+    $('#notice').html("Please login to add a comment on a event");
+<% end %>

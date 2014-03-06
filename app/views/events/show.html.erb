@@ -1,0 +1,64 @@
+
+<div class="main-content">
+   <% @page_title = "Event Details"  %>
+
+     <h2 style="color:#8b4513;"> <b><%= (@event.name.camelcase) %> </b> </h2> <br/>
+
+    <div>
+         <b>Start On:</b>
+            <span class=" blogger_date">   <%= @event.starttime.strftime("%B") %>
+              <%=  @event.starttime.day %> ,
+              <%= @event.starttime.year %>     </span> <br/>
+         <b> Duration: </b>
+           <span class="blogger_date">  <%= @event.schedules.get_event_dates(@event.id).count %> days  </span> <br/>
+
+    </div>
+  <div>
+      <b> Venue: </b>  <%= @event.location %>  <br/> <br/>
+      <b> Address: </b>
+        <div>
+            <div class="indent"><%= @event.street_address %>,</div>
+            <div class="indent"><%= @event.city_address %>,</div>
+            <div class="indent"><%= @event.state %>, </div>
+            <div class="indent"><%= @event.zip_code %></div>
+        </div>
+  </div>
+     <div>
+        <b> Contact: </b>
+        <div class="indent"><b>Email: </b><%=link_to @event.email, new_email_path %> </div>
+        <div class="indent"><b>Phone Number: </b><%=number_to_phone(@event.phone_number) %></div>
+    </div>
+  </div>
+
+
+     <b>Description: </b>
+     <div class="indent">  <%= @event.description %> </div> <br/>
+
+     <p class="blogger_name"> <b>Event Schedule </b> </p> <br/>
+
+         <%= render 'schedules/event_schedule' %>
+
+    <div class="links">
+      <%= link_to 'Add Comment', new_event_comment_path(@event.id) %>
+      <% if @event.starttime > DateTime.now %>
+        <% if @event.owner == session[:user_id]  %>
+           | <%= link_to 'Edit', edit_event_path(@event) %> |
+             <%= link_to 'Add Event Schedule',event_new_multiple_schedules_path(@event.id) %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+<div class="comments">
+    <p class="blogger_name"> <b> User Comments </b> </p>
+
+  <div class="event-comments" id="event-comments">
+    <%= render 'eventcomments/user_comments' %>
+
+  </div>
+</div>
+
+  <p class="blogger_name"><b>Write Your Comment </b></p>
+  <div id="new-comment">   <%= render 'eventcomments/form' %>  </div>
+

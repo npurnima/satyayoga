@@ -1,0 +1,41 @@
+
+   <% @dates.each do |date| %>
+      <p style="padding-right: 10px;" ><%= date %>
+
+            <% if session[:user_id] == @event.owner %>
+                <i style="padding-right: 10px;"><%=  link_to 'Add', new_schedule_path(params[:id],date) %></i>  <i>  </i>
+                <i style="padding-right: 10px;"><%= link_to 'Add Many more',event_new_multiple_schedules_path(params[:id]) %></i>
+                <br/>
+            <% end %>
+      </p>
+
+       <% @subsch = [] %>
+
+        <% for schedule in @schedules %>
+
+         <% if schedule.date == date  %>
+                 <div class="indent">
+
+                   <div class="sch-title">
+
+                        <p>
+                           <b style="padding-right: 10px;">  <%= schedule.title %>  </b>
+                           <b style="padding-right: 10px;">   <i> <%= time_in_am_pm(schedule.start_time) %></i> </b>
+                           <b style="padding-right: 10px;">   <i> <%= time_in_am_pm (schedule.end_time) %></i>   </b>
+                             <% if session[:user_id] == @event.owner %>
+                             <b style="padding-right: 10px;"> <%=  link_to 'Edit', edit_schedule_path(schedule.id) %> </b>
+                             <% end %>
+
+                        </p>
+
+                 </div>
+                 </div>
+
+             <%end %>
+
+     <% end %>
+
+
+
+ <% end %>
+

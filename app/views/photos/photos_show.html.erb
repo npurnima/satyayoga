@@ -1,0 +1,31 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Albums',albums_path %> >
+  <%=link_to Album.find(params[:id]).title,all_album_photos_path(params[:id]) %> > <%= 'Photos show' %>
+</div>
+<div class="main-content">
+ <h3 class="alb_title_head">  <%= Album.find(params[:id]).title %> Album   </h3>
+  <p id ="notice"><%= notice %>  </p>   <% photoid = 0 %>
+
+      <% photoid = (params[:photo_id].to_i) %>
+
+      <div class="photo-caption"><%= (@photos[photoid]).caption  %> </div>
+      <div class="photo-number"><%= photoid+1 %> of <%= @photocount %>  </div>
+        <% nextid = photoid+1 %>
+        <% previd = photoid-1 %>
+        <div class="alb-photo-show">
+
+          <% if previd >=0 %>
+
+              <%= link_to image_tag("background_images/arrow-prev.gif",:class => 'prev'), photos_show_path(params[:id],previd) %>
+
+           <% end %>
+
+          <div class="large-img"> <%= image_tag((@photos[photoid].title), :class => 'photo-large-img' ) %>
+          </div>
+
+             <% if nextid != @photocount %>
+                <%= link_to image_tag("background_images/arrow-next.gif",:class=>'next'), photos_show_path(params[:id],nextid) %>
+             <% end %>
+
+        </div>
+  </div>

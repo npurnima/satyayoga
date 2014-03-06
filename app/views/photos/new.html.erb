@@ -1,0 +1,12 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Albums',album_path %> >
+   > <%= 'Add New Photo' %>
+</div>
+<div class="main-content">
+<h2>Add a Photo for The Album</h2>
+<p id="notice"><%= notice %></p>
+
+<%=render 'form'  %>
+
+<%= link_to 'Back', photos_path %>
+</div>

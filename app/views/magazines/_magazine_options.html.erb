@@ -1,0 +1,20 @@
+
+<%= link_to image_tag("background_images/color_archives.jpeg",:class=>'small-icon') %>
+<%link_to 'Telugu Archives',telugu_archives_path(Date.today.year),:id =>'leftbar-link-1' %>
+<a id= "link-10"> Telugu Archives </a><br/>
+    <div class="sub-leftbar" id = "sub-link-10">
+      <% @Tyears.sort.each do |y| %>
+          <%= link_to_unless(y.year==params[:id].to_i, y.year, telugu_archives_path(y.year) )%> <br/>
+      <% end %>
+    </div>
+
+<br/>
+<%= link_to image_tag("background_images/color_archives.jpeg",:class=>'small-icon') %>
+ <% link_to 'English Archives ',english_archives_path(Date.today.year),:id=>'leftbar-link-2' %>
+ <a id="link-11"> English Archives </a><br/>
+ <div class="sub-leftbar" id="sub-link-11">
+    <% @Eyears.sort.each do |y1| %>
+        <%= link_to_unless(y1.year==params[:id].to_i, y1.year, english_archives_path(y1.year) )%> <br/>
+    <% end %>
+  </div>
+

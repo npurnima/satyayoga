@@ -1,0 +1,36 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to'Courses', courses_path %> > <%= 'List of All Assigned courses' %>
+
+</div>
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+<h2>List of Assigned Courses To Saadhakas</h2>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Course</th>
+    <th>No of names per day</th>
+    <th>Guide</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @usercourses.each do |usercourse| %>
+  <tr>
+    <td><%= usercourse.user_id %></td>
+    <td><%= usercourse.course_id %></td>
+    <td><%= usercourse.no_of_names_per_day %></td>
+    <td><%= User.find(usercourse.guide_id).firstname+'.'+User.find(usercourse.guide_id).lastname %></td>
+    <td><%= link_to 'Show', usercourse %></td>
+    <td><%= link_to 'Edit', edit_usercourse_path(usercourse) %></td>
+    <td><%= link_to 'Destroy', usercourse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Usercourse', new_usercourse_path %>
+</div>

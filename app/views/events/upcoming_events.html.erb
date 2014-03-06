@@ -1,0 +1,38 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Events',upcoming_events_path %> > <%= 'Upcoming Events' %>
+</div>
+
+<div class="main-content">
+  <% @page_title= "List of all Upcoming Events" %>
+
+  <% if @events.empty?  %>
+      <h2>There are no Upcoming Events in near Future, Please check Later..</h2>
+  <% end %>
+ 
+    <% @events.each do |event| %>
+
+        <div class="blogger_section">
+          <div><%= image_tag("background_images/upcomming_event_icon.gif",:class =>'img-icon') %></div>
+           Event :<span class="blogger_date"><%=link_to event.name, event %></span> <br/>
+           Venue: <span class="blogger_name"><%= event.location %></span>      <br/>
+           Start Date: <span class="blogger_date"><%= event.starttime.to_date %></span>   <br/>
+           Event Duration: <span class="blogger_date"><%=  %></span> <br/>
+
+          <div class="indent">  <%= event.description %> </div>
+          <div id="add_comment"> <%= link_to 'Add',new_event_comment_path(event.id),:remote=> true %>  </div>
+        </div>
+
+      <div class="margin_bottom_20 border_bottom"></div>
+      <div class="margin_bottom_20"></div>
+
+    <% end %>
+
+   <br/> <p class="divider"></p>
+  <p id="comment_form"></p>
+<div id="display-add-comment">  </div>
+
+  <% if session[:user_id] && session[:privilage] <= 2 %>
+     <div class="links"> <h4><%= link_to 'New Event', new_event_path %> </h4>  </div>
+  <% end %>
+
+</div>

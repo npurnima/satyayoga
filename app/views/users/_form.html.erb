@@ -1,0 +1,96 @@
+
+<%= form_for(@user,:html=>{:multipart => true}) do |f| %>
+  <% if @user.errors.any? %>
+        <div id="error_explanation" xmlns="http://www.w3.org/1999/html">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= f.label :Firstname %>
+    <%= f.text_field :firstname %> * <br />
+  </div>
+
+   <div class="field">
+    <%= f.label :LastName %>
+    <%= f.text_field :lastname %> * <br />
+   </div>
+             <br/>
+    <div class="field">
+      <%= f.label :Date_of_birth %>
+      <%= f.date_select :date_of_birth, :start_year =>1950,:include_time => false  %> *
+    </div>  <br/>
+
+    <div class="field">
+        <%= f.label :Username %>
+        <%= f.text_field :username %> * <br />
+      </div>
+    <div class="field">
+        <%= f.label :Password %>
+        <%= f.password_field :password %> * <br />
+        </div>
+    <div class="field">
+        <%= f.label :confirm_password %>
+        <%= f.password_field :confirm_password %> *   <br/>
+    </div>
+    <div class="field">
+        <%= f.label :Email %>
+        <%= f.email_field :email %> *   <br/>
+    </div>
+
+    <div class="field">
+        <%= f.label :Street_Address %>
+        <%= f.text_field :street_address %>
+    </div>
+
+    <div class="field">
+        <%= f.label :City_address %>
+        <%= f.text_field :city_address %>
+    </div>
+
+    <div class="field">
+        <%= f.label :State %>
+        <%= f.text_field :state %> <br/>
+    </div>
+
+    <div class="field">
+        <%= f.label :zipCode %>
+        <%= f.text_field :zip_code %> <br/>
+    </div>
+
+    <div class="field">
+        <%= f.label :country %>
+        <%= f.text_field :country %>  <br/>
+     </div>
+
+    <div class="field">
+        <%= f.label :phone_Number %>
+        <%= f.phone_field(:phone_number) %> <br/>
+    </div>
+
+    <div class="field">
+        <%= f.label :upload_photo %>
+        <%= f.file_field :photo %> <br/>
+    </div>
+
+    <div class="field">
+        <% f.label :voice_request %>
+        <% f.file_field :voice_request %><br/>
+    </div>
+
+    <div>
+        <p> <%= f.check_box :terms_accepted  %> Please accept the terms to proceed..    </p>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

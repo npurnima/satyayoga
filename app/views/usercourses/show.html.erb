@@ -1,0 +1,33 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to'Courses', courses_path %> > <%= 'A Assigned Course' %>
+
+</div>
+<div class="main-content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag(@user.photo,:class => 'medium-img') %> <br/>
+  <%= @user.firstname %>.<%= @user.lastname  %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%= @course.name %>
+</p>
+
+<p>
+  <b>No of names per day:</b>
+  <%= @usercourse.no_of_names_per_day %>
+</p>
+
+<p>
+  <b>Guide:</b>
+  <%= @guide.firstname %>.<%= @guide.lastname %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_usercourse_path(@usercourse) %> |
+<%= link_to 'Back', usercourses_path %>
+</div>

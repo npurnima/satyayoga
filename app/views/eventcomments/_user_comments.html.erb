@@ -1,0 +1,18 @@
+<% @eventcomments.each do |comment|%>
+    <% @user = User.find(comment.user_id)  %>  <br/>
+
+    <div class="user-details">
+      <div class="user-img">
+        <%= image_tag(@user.photo,:class => 'img-icon')  %>
+      </div>
+      <div class="user-name">
+        <%= link_to @user.firstname.capitalize, user_path(@user.id) %>
+        <i><%= distance_of_time_in_words(DateTime.now,comment.created_at) %> ago </i> <br/>
+        <br/>
+      </div>
+      <div class="user-comment">  <%= comment.comment.capitalize %>  </div>
+
+    <div><%= link_to 'Reply',:remote => true %></div>
+
+    </div>  <br/>
+<% end%>

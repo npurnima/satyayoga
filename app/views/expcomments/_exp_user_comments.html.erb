@@ -1,0 +1,15 @@
+<% @usercomments.each do |expcomment| %>
+    <% @commentuser = User.find(expcomment.owner)   %>
+
+    <div class="user-img">
+      <%= image_tag(@commentuser.photo,:class => 'img-icon') %>
+    </div>
+    <div class="user-name">
+      <%= link_to @commentuser.firstname.capitalize,user_path(@commentuser.id) %>
+      <i><%= distance_of_time_in_words(DateTime.now,expcomment.created_at) %>  ago    <br/> </i>
+    </div>
+    <div class="user-comment">
+      <%= expcomment.description.capitalize %>
+      <%= expcomment.no_of_views %>
+    </div>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="header-breadcrumbs" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <%= link_to 'Home', homepages_path %>  > <%= 'My page' %>
+</div>
+
+<div class="leftbar">
+
+  <%= render 'homepages/mypage_leftbar_options' %>
+
+</div>
+
+<div class="main-content">
+
+  <div class="divider"><p></p> <p></p></div>
+
+
+
+  <h2>List of all the event comments that are been made by <%= session[:username]%></h2>
+  <div id="user-eventcomments">
+
+
+        <% @eventcomments.each do |comment|%>
+            <% @user = User.find(comment.user_id)  %>
+
+            <div class="comments">
+              <div class="user-img">
+                <%= image_tag(@user.photo,:class => 'img-icon')  %>
+              </div>
+              <div class="user-comment">
+                <b><%= @user.firstname %> </b> <br/> <br/>
+                <b> <%= comment.event_id ? Event.find(comment.event_id).name : "Some Event" %>  </b>  <br/>
+                <%= comment.comment %>
+
+              </div>
+
+            </div>
+        <% end%>
+
+   </div>
+ </div>

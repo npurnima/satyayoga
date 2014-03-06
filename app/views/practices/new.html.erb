@@ -1,0 +1,14 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> ><%= link_to 'Group practices',practices_path %> >
+  <%= 'Add A Group Practice' %>
+
+</div>
+
+<div class="main-content">
+  <p id="notice"><%= notice %>     </p>
+<h2>Add A New Group Practice</h2>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', practices_path %>
+</div>

@@ -1,0 +1,5 @@
+<div class= "main-content">
+<h1> Reading a file
+Title : <%=  @course.name  %>   </h1>
+<%= File.open(@course.filepath, "r").readlines%>
+</div>

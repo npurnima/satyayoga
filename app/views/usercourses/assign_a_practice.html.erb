@@ -1,0 +1,48 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Group Practices',user_practices_path(@guide.id) %> > <%= 'Add all Attended Saadhakas to a Practice' %>
+
+</div>
+<div class="main-content">
+  <p id="notice"> <%=  notice %> </p>
+  <h2> List of Saadhakas with Guide '<%=@guide.firstname %>' <%= image_tag(@guide.photo,:class=>'img-icon') %>  </h2>
+
+
+  <%= form_tag(:action =>'add_attendence',:controller =>'usercourses',:method => :put, :id => params[:id],:adduser => params[:adduser]) do  %>
+  <table>
+    <tr>
+      <th>Select</th>
+      <th>Picture </th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Username</th>
+      <th>Courses been Doing</th>
+      <th>Assign a Course</th>
+    </tr>
+    <% i=0 , adduser=[] %>
+    <% @saadhakas.each do |user| %>
+        <tr>
+          <% @user = User.find(user.user_id) %>
+
+          <% if @user.present?  %>
+
+              <td><%= check_box_tag 'adduser[]',user.user_id %>
+              <!--  <% if params[:ch] == 'selected' %>
+
+                   <% params[:adduser][i] << user.user_id%>
+                    <% i= i+1 end %> --></td>
+
+              <td><%= link_to image_tag(@user.photo, :class =>'img-icon'),@user %></td>
+              <td><%= link_to @user.firstname, @user %></td>
+              <td><%= @user.lastname %></td>
+              <td><%= @user.username %></td>
+              <td><%= link_to 'courses doing', courses_by_saadhaka_path(@user.id) %></td>
+              <td><%= link_to 'Assign a Course',assign_a_course_to_saadhaka_path(@user.id) %></td>
+          <% end %>
+
+        </tr>
+    <% end %>
+  </table>
+
+     <%= submit_tag 'Add Attendence' %>
+  <% end %>
+</div>

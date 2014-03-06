@@ -1,0 +1,10 @@
+Welcome to  Raaja yoga school <%= @user.firstname %>
+===============================================
+
+You have successfully registered to yogaschool,
+
+your username is: <%= @user.username %>.
+
+To login to the site, just follow this link: <%= @url %>.
+
+Thanks for joining and have a great day!

@@ -1,0 +1,22 @@
+<div class="main-content">
+  <h2>Contact My Guide</h2>
+
+<%= form_for (:contact_guide), :url =>{:action=> 'contact_guide',:controller=> 'emails',:id => session[:user_id]},
+             :html => {:multipart => 'true',:method => 'post'} do |f| %>
+
+
+    <div class="field">
+      <%= f.label :subject %><br />
+      <%= f.text_field :email_subject %>
+    </div>
+
+    <div class="field">
+      <%= f.label :body %><br />
+      <%= f.text_area :email_body %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit  'Send'%>
+    </div>
+<% end %>
+</div>

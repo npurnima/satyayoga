@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+
+<p>Dear <%= @user.firstname %>, </p>
+
+<h3>There is a New Upcoming Event in  Raaja Yoga School </h3>
+
+
+<p>   Event Name : <b><%= @event.name %> </b> <br/>   </p>
+
+<p>    Event venue : <b><%= @event.location %> </b><br/>   </p>
+
+<p>    To know more details about this event follow this link: <%= @url %> </p>
+
+<p>   Thanks for joining and have a great day!</p>
+
+</body>
+</html>

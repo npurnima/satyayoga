@@ -1,0 +1,24 @@
+<div class="main-content">
+
+<% @page_title = "Add New Schedule For '#{@event.name}'" %>
+  <% @schedules.each do |schedule| %>
+      <% if schedule.date  == params[:date].to_date%>
+          <div class="indent">
+            <%= params[:date] %>
+            <div class="sch-title">
+              <b>  <%= schedule.title %>  </b>
+              From <i> <%= time_in_am_pm(schedule.start_time) %></i>
+              To <i> <%= time_in_am_pm (schedule.end_time) %></i>  <b>   </b>
+              <% if session[:user_id]== @event.owner %>
+                  <%=  link_to 'Edit', edit_schedule_path(schedule.id) %>
+              <% end %>
+            </div>
+          </div>
+       <% end %>
+  <% end %>
+  <br/><div class="divider"></div>
+  <%= render 'form' %>
+
+<%= link_to 'Add More Activities', new_schedule_path(@event.id,params[:date]) %>
+
+</div>

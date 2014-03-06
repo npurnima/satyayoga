@@ -1,0 +1,32 @@
+<div class="main-content">
+<h1>Listing photos</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Caption</th>
+    <th>Album</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @photos.each do |photo| %>
+  <tr>
+    <td><%= photo.title %></td>
+    <td><%= photo.caption %></td>
+    <td><%= photo.album_id %></td>
+    <% if session[:user_id] && session[:privilage] <=2 %>
+        <td><%= link_to 'Show', photo %></td>
+        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+<%= link_to 'New Photo', new_photo_path %>
+</div>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+          <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<div><%= image_tag('/assets/background_images/logo-blue-and yellow(1).jpg') %>  </div>
+<p>Dear <%= @user.firstname %>, </p>
+
+<h3> Latest <b><%= @magazine.languagewritten %> </b> Magazine has been added to  Raaja Yoga School </h3>
+
+
+<p>  Magazine Name : <b><%= @magazine.title %> </b> <br/>   </p>
+
+
+<p>    To know more about this magazine follow the link: <%= @url %> </p>
+
+<p>   Thanks for joining and have a great day!</p>
+
+</body>
+</html>

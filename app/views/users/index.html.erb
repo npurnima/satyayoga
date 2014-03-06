@@ -1,0 +1,26 @@
+
+<div class="main-content">
+ 
+  <% @page_title = " List of all Users" %>
+
+
+
+        <% @users.each do |user| %>
+
+            <div class="blogger_section">
+              <%= link_to image_tag(user.photo, :class =>'img-icon'),mypage_path(user.id) %>
+              Name: <span class="blogger_name">  <%= user.firstname + user.lastname %> </span>   <br/>
+              Username: <span class="blogger_date">  <%= user.username %> </span> <br/>
+              Role: <%= user.userrole.role.name %>
+              <%= link_to 'Assign a New Role',edit_userrole_path(user.id)  %>
+            </div>
+
+            <div class="cleaner"></div>
+            <div class="margin_bottom_20"></div>
+
+        <% end %>
+
+ <%= will_paginate @users  %>
+
+
+</div>

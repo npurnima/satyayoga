@@ -1,0 +1,17 @@
+<div class="main-content">
+
+<% @page_title = "Schedule for #{@event.name}" %>
+
+<% @schedules.each do |schedule| %>
+   <div>
+     <%= schedule.date %> <br/>
+      <p><%= schedule.title %>   : From  <%= @schedule.start_time.hour %> :  <%= @schedule.start_time.min %>
+     To <%= @schedule.end_time.hour %>  : <%= @schedule.end_time.min %> </p>
+   </div>
+<% end %>
+
+
+<br />
+
+
+</div>

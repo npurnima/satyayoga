@@ -1,0 +1,17 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'MyPage',mypage_homepages_path(session[:user_id]) %> > <%= 'Change Status of a Practice' %>
+
+</div>
+<div class="main-content">
+
+<%= form_for(@usercourse,:url => {:action => 'update_status',:controller => 'usercourses',:id => params[:id]}) do |f| %>
+
+    <%= f.radio_button :status, 'Started' %>  Started   <br/>
+    <%= f.radio_button :status, 'Still practicing'  %>  Still Practicing  <br/>
+    <%= f.radio_button :status, 'Done' %> Done     <br/>
+
+ <%= f.submit 'Change Status' %>
+
+ <% end  %>
+
+</div>

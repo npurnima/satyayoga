@@ -1,0 +1,76 @@
+
+<% if session[:user_id] && session[:privilage] <= 3 %>
+
+   <a id="link-1"> Album Access </a> <br/>
+
+    <div class="sub-leftbar" id="sub-link-1">
+      <%= link_to 'List of My Albums', user_albums_path(session[:user_id]) %><br/>
+      <%= link_to 'Add a New Album', new_album_path %><br/>
+    </div>
+
+   <% if  session[:user_id] && session[:privilage] <= 2 %>
+
+        <a id="link-2"> Course Access </a> <br/>
+        <div class="sub-leftbar" id="sub-link-2">
+          <%= link_to 'List of My courses', user_courses_path(session[:user_id]) %><br/>
+          <%= link_to 'Add a New Course', new_course_path %><br/>
+        </div>
+
+        <a id="link-3"> Event Access </a><br/>
+        <div class="sub-leftbar" id="sub-link-3">
+          <%= link_to 'List of My Events',user_events_path(session[:user_id]) %><br/>
+          <%= link_to 'Add a New Event', new_event_path %><br/>
+        </div>
+
+        <a id="link-4"> Group Practices Access </a> <br/>
+        <div class="sub-leftbar" id="sub-link-4">
+
+          <%= link_to 'List of My practices',user_practices_path(session[:user_id]) %><br/>
+          <%= link_to 'Add a New group practice', new_practice_path %><br/>
+        </div>
+
+        <a id="link-5"> Magazine Access </a> <br/>
+        <div class="sub-leftbar" id="sub-link-5">
+          <%= link_to 'My Magazines', user_magazines_path(session[:user_id]) %> <br/>
+          <%= link_to 'Add a Magazine', new_magazine_path %> <br/>
+        </div>
+
+        <a id="link-6"> Saadhaka Access </a> <br/>
+        <div class="sub-leftbar" id="sub-link-6">
+          <%= link_to 'List of Saadhakas', saadhakas_by_guide_path(session[:user_id]),
+                      :title =>'Show the list all the saadhakas with a guide' %><br/>
+        </div>
+
+
+
+        <% if session[:user_id] && session[:privilage]==1 %>
+
+               <a id="link-7"> User Access </a>    <br/>
+               <div class="sub-leftbar" id="sub-link-7">
+                  <%= link_to 'List of Users', users_path %><br/>
+                  <%= link_to 'List of Admins',list_of_all_roles_path(1) %><br/>
+                  <%= link_to 'List of Guides',list_of_all_roles_path(2) %><br/>
+                  <%= link_to 'List of Sadhakas',list_of_all_roles_path(3) %><br/>
+                  <%= link_to 'List of SimpleUsers',list_of_all_roles_path(4) %><br/>
+                </div>
+
+                <a id="link-8"> Introduction Access </a> <br/>
+                <div class="sub-leftbar" id="sub-link-8">
+                  <%= link_to 'My Files', user_files_path(session[:user_id]) %> <br/>
+                  <%= link_to 'Add a File', new_introduction_path %> <br/>
+                </div>
+
+                 <a id="link-9"> Role Access </a>  <br/>
+                <div class="sub-leftbar" id="sub-link-9">
+                <%= link_to 'List of Roles', roles_path %><br/>
+                <%= link_to 'Add a New Role', new_role_path %><br/>
+                </div>
+
+            <% end %>
+
+
+    <% end %>
+
+
+
+<% end %>

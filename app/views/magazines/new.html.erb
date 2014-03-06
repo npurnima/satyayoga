@@ -1,0 +1,11 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Magazines',latest_telugu_english_magazines_path %> > <%= 'Add New Magazine' %>
+ </div>
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+<h2>Add a New Magazine </h2>
+
+    <%= render 'form' %>
+
+<%= link_to 'Back', magazines_path %>
+</div>

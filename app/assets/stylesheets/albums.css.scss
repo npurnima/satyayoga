@@ -1,0 +1,86 @@
+// Place all the styles related to the albums controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.alb-item{
+  margin-right: 10px;
+  float:left;
+  width: 250px;
+}
+.alb-medium-img{
+  width: 230px;
+  height: 150px;
+  padding: 5px;
+  border:#8b0000;
+  border:double;
+  border-bottom-width: thick;
+}
+
+.alb-small-img{
+  width: 150px;
+  height: 120px;
+  border: #8b4513 double;
+  padding: 2px;
+  }
+.photo-item{
+  margin-right:10px;
+  float: left;
+  width: 175px;
+}
+.photo-caption{float: left; padding-left: 75px; color:black; padding-bottom:10px ;}
+.photo-number {float: right; padding-right:40%; text-align: match-parent center;color:#000000; padding-bottom: 10px;}
+
+.alb-large-img{
+  width: 650px;
+  height: 400px;
+
+}
+.alb-photo-show{
+  width: 800px;
+  height:400px;
+  float: left;
+  position: relative;
+
+}
+.alb_title_head{
+  text-align: match-parent center;
+  margin-left: 200px;
+}
+  .prev{float:left;width:30px; height: 30px; padding-top: 50px; padding-right: 30px; }
+  .next{float:right;width:30px; height: 30px; margin-left: 30px; padding-top:50px;}
+  .large-img{float:left; position:absolute; padding-left: 50px; margin-left: 30px;}
+
+.alb-slide-show{
+ background-image: url("background_images/photoframe(1).png");
+  background-repeat: no-repeat;
+  width: 800px;
+  height: 600px;
+  padding: 55px;
+}
+.slideshow{
+  width: 615px;
+  height: 340px;
+  background-color: #e6e6fa;
+  padding: 15px;
+ // border:#8b0000;
+ // border:double;
+ // border-bottom-width: thick;
+  position: relative;
+
+}
+.photo-large-img{
+  width: 615px;
+  height: 340px;
+}
+
+#slideshow p{
+  padding: 5px,10px ;
+  background: transparent;
+}
+
+.slide-show-link{
+  float: right;
+ // padding-left:150px;
+  color:blue;
+}

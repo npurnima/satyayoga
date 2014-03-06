@@ -1,0 +1,13 @@
+
+
+  <% @magazines.each do |m| %>
+      <div class="mag-each">
+        <p><%= m.title %></p>
+
+        <div class="medium-img">
+          <%= link_to image_tag(m.coverpageimage,:class=>'medium-img'), reading_magazine_path(m.id) %>
+        </div>
+        <p><%= Magazine.get_month(m.month)%> / <%= m.year %></p>
+      </div>
+
+  <% end %>

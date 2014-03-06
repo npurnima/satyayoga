@@ -1,0 +1,37 @@
+
+<%= form_for(@expcomment,:url =>{:action => 'create',:controller => 'expcomments',:id => params[:id]}) do |f| %>
+  <% if @expcomment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@expcomment.errors.count, "error") %> prohibited this expcomment from being saved:</h2>
+
+      <ul>
+      <% @expcomment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%f.hidden_field :exp_id %>
+  </div>
+  <div class="field">
+    <% f.hidden_field :owner %>
+  </div>
+  <div class="field">
+    <%= f.label :Post_Your_Comment %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <% f.label :no_of_views %><br />
+    <% f.number_field :no_of_views %>
+  </div>
+  <div class="field">
+    <%= f.label :comment_type %><br />
+    <%= f.radio_button :comment_type,'Public' %> <i>Public</i>
+    <%= f.radio_button :comment_type,'Private' %><i>Private</i>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Comment" %>
+  </div>
+<% end %>

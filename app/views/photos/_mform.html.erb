@@ -1,0 +1,45 @@
+
+     <%= form_for :create_multiple,:url => {:action => 'create_multiple', :controller => 'photos', :id => params[:id]},
+                  :html => {:multipart => 'true',:method => 'post'} do |f| %>
+
+          <%= fields_for :photo1  do |f1|%>
+            Image 1:   <%= f1.file_field :title%>   <br/>
+            Caption: <%= f1.text_field :caption %>
+             <%= f1.hidden_field :album_id %>
+             <%= f.hidden_field :owner %><br/>
+          <% end %>
+          <%= fields_for :photo2  do |f2| %>
+            Image 2:   <%= f2.file_field :title %> <br/>
+            Caption: <%= f2.text_field :caption %>
+            <%= f2.hidden_field :album_id %>
+             <%= f.hidden_field :owner %><br/>
+          <% end %>
+          <%= fields_for :photo3 do |f3| %>
+            Image 3:   <%= f3.file_field :title %> <br/>
+            Caption: <%= f3.text_field :caption %>
+            <%= f3.hidden_field :album_id %>
+             <%= f.hidden_field :owner %><br/>
+          <% end %>
+          <%= fields_for :photo4 do |f4| %>
+             Image 4:   <%= f4.file_field :title %> <br/>
+            Caption: <%= f4.text_field :caption %>
+            <%= f4.hidden_field :album_id %>
+             <%= f.hidden_field :owner %><br/>
+          <% end %>
+          <%= fields_for :photo5  do |f5| %>
+            Image 5:   <%= f5.file_field :title %>   <br/>
+            Caption: <%= f5.text_field :caption %>
+            <%= f5.hidden_field :album_id %>
+             <%= f.hidden_field :owner %><br/>
+          <% end %>
+          <%= fields_for :photo6 do |f6| %>
+            Image 6:   <%= f6.file_field :title %>   <br/>
+            Caption: <%= f6.text_field :caption %>
+            <%= f6.hidden_field :album_id %>
+             <%= f.hidden_field :owner %><br/>
+          <% end %>
+          <p>      </p>
+
+        <%=f. submit "upload" %>
+
+      <%end%>

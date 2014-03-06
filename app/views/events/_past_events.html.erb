@@ -1,0 +1,24 @@
+<% if @past_events %>
+<% @past_events.each do |event| %>
+
+      <div class="blogger_section" style="padding-top: 5px;">
+        <div><%= image_tag("background_images/event_back.jpeg",:class =>'img-icon') %></div>
+        Event:<span class="blogger_name"><%= link_to event.name, event_path(event.id) %></span>   <br/>
+
+        Venue: <span class="blogger_date"><%= event.location %></span> <br/>
+        Start Date: <span><%= event.starttime.to_date%></span> <br/>
+        End Date: <span><%= event.endtime.to_date %></span>  <br/>
+        <div><p><%= event.description %></p></div>
+        <div class="rc_btn_02"><%= link_to 'Add A Comment',new_event_comment_path(event.id) %></div>
+        <div id="display-add-comment">  </div>
+      </div>
+        <div class="margin_bottom_20"></div>
+
+        <!-- Bottom  border line to divide each event except the last one -->
+        <% if event != @past_events.last %>
+            <div class="margin_bottom_20 border_bottom"></div>
+        <%end%>
+<% end %>
+    <%= will_paginate @past_events  %>
+<%end%>
+

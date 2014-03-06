@@ -1,0 +1,26 @@
+<div class="main-content">
+<p id="notice"><%= notice %></p>
+<div class="prev">
+
+</div>
+  <div class="alb-photo-show">
+    <p class="photo-caption"><%= @photo.caption  %></p>
+    <p class="photo-number"> <%=Photo.find_all_by_album_id(@photo.album_id).count() %>   from
+      <%= @photo.album.title %>
+    </p>
+    <%= image_tag(@photo.title, :class => 'alb-large-img') %>
+
+
+  </div>
+<div class="next">
+
+
+</div>
+
+</div>
+<% if  session[:user_id] && session[:privilage] <= 3 %>
+<div class="links">
+<%= link_to 'Edit', edit_photo_path %> |
+<%= link_to 'Back', all_album_photos_path(@photo.album_id) %>
+</div>
+<% end %>

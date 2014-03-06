@@ -1,0 +1,50 @@
+<head>
+  <script>
+      $(function() {
+          $( "#tabs" ).tabs();
+      });
+  </script>
+</head>
+
+
+<div class="main-content">
+
+<% @page_title = "List of all Magazines" %>
+
+  <% i=1  %>
+  <% tabs = [] %>
+  <div id="tabs">
+
+    <ul>
+      <% @years.sort.each do |year| %>
+          <% tabs << "#tabs-#{i}" %>
+        <li><a href= <% "#tabs-#{i}" %>><%= year.year %></a></li>
+          <% i= i+1 %>
+
+      <%end%>
+
+    </ul>
+    <% tabs.each do  |tab|%>
+        <div id="<% "#{tab}"%>">
+          <% @years.sort.each do |year| %>
+              <% @magazines.each do |m| %>
+                <div class="mag-each">
+                  <% if m.year == year.year %>
+                        <p><%= m.title %></p>
+
+                        <div class="medium-img">
+                         <%= link_to image_tag(m.coverpageimage,:class=>'medium-img'), reading_magazine_path(m.id) %>
+                        </div>
+                        <p><%= Magazine.get_month(m.month) %> / <%= m.year %></p>
+                   <%end%>
+                </div>
+              <% end %>
+          <%end%>
+         </div>
+    <%end%>
+  </div>
+
+  <% if session[:user_id] && session[:privilage] == 1 %>
+        <div class="links"> <%= link_to 'New Magazine', new_magazine_path %>  </div>
+   <% end %>
+</div>

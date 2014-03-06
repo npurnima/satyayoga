@@ -1,0 +1,10 @@
+<% if session[:user_id] && session[:privilage] ==3 %>
+    <%= link_to 'Album Access'  %>  <br/>
+        <div class="sub-leftbar">
+            <%= link_to 'List of My Albums', user_albums_path(session[:user_id]) %><br/>
+            <%= link_to 'Add a New Album', new_album_path %><br/>
+        </div>
+
+<% end %>
+
+

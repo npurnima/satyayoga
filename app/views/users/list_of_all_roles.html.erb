@@ -1,0 +1,46 @@
+
+<div class="main-content">
+
+  <% @page_title = "List of all #{Role.find(params[:role_id]).name}' s" %>
+
+  <table>
+    <tr>
+      <th>Picture </th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Username</th>
+      <% if params[:role_id].to_i != 4  %>
+          <th>Courses been Doing</th>
+      <% end %>
+      <% if params[:role_id].to_i == 2  %>
+          <th>No of Saadhakas</th>
+      <%end %>
+    </tr>
+      <% @userroles.all %>
+    <% @userroles.each do |user| %>
+        <tr>
+          <% @user = User.find(user.user_id) %>
+
+          <% if @user.present?  %>
+                <td><%= link_to image_tag(@user.photo, :class =>'img-icon'),@user %></td>
+                <td><%= link_to @user.firstname, @user %></td>
+                <td><%= @user.lastname %></td>
+                <td><%= @user.username %></td>
+              <% if (params[:role_id].to_i!=4) %>
+                <td><%= link_to 'Current courses', courses_by_saadhaka_path(user.user_id) %></td>
+              <% end %>
+              <% if (params[:role_id].to_i==2) %>
+                  <% @saadhakas =  Userrole.find_all_saadhakas_by_guide(user.user_id) %>
+                  <td><%= link_to @saadhakas.count,saadhakas_by_guide_path(user.user_id) %> </td>
+              <%end %>
+          <% else  %>
+
+          <% end %>
+          <!--<td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>     -->
+        </tr>
+    <% end %>
+  </table>
+
+
+</div>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+          <html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+
+
+<div><%= image_tag('/assets/background_images/logo-blue-and yellow(1).jpg') %>  </div>
+<p>Dear <%= @user.firstname %>, </p>
+
+<h3> New Comment has been added to your post in  Raaja Yoga School </h3>
+
+
+<p> Your Post Topic : <b><%= @experience.topic %> </b> <br/>   </p>
+
+<p> Comment From : <b><%= @sender.firstname %> </b></p>
+
+<p> Comment : <b><%= @expcomment.description %> </b><br/>   </p>
+
+<p>  To know more details about this comment follow this link: <%= @url %> </p>
+
+<p>   Thanks for joining and have a great day!</p>
+
+</body>
+</html>

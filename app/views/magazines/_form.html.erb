@@ -1,0 +1,23 @@
+
+<%= form_for (@magazine) do |f| %>
+  <div class ="form">
+    <%= f.label "Magazine Title:" %>
+    <%= f.text_field :title %> </br> </br>
+    <%= f.label "Magazine File:" %>
+    <%= f.file_field :filepath %> </br>  </br>
+    <%= f.label "Magazine cover Page:" %>
+    <%= f.file_field :coverpageimage %>  </br> </br>
+    <%= f.label "Language Written:" %>
+    <%= f.radio_button :languagewritten, 'English' %> <b> English </b>
+    <%= f.radio_button :languagewritten, 'Telugu'  %> <b> Telugu </b> </br> <br/>
+    <%= f.label "Month Published" %>
+    <%= f.select :month, options_for_select(Magazine::MONTHS) %> <br/>    <br/>
+    <%= f.label "Year Published" %>
+    <%= f.select :year, options_for_select(Magazine::Magazine.select_years) %>
+    <%= f.hidden_field :owner %>
+   </div>
+  <div class="action">
+    <%= f.submit %>
+  </div>
+
+<% end %>

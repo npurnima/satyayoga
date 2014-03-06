@@ -1,0 +1,39 @@
+<div class="main-content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @practice.date.to_date %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%= Course.find(@practice.course_id).name %>
+</p>
+
+<p>
+  <b>Course from number:</b>
+  <%= @practice.course_from_number %>
+</p>
+
+<p>
+  <b>Course to number:</b>
+  <%= @practice.course_to_number %>
+</p>
+
+<p>
+  <b>Guide:</b>
+  <%= @practice.guide_id %>
+</p>
+
+<p>
+  <b>Experience:</b>
+  <%= @practice.experience %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_practice_path(@practice) %> |
+<%= link_to 'Back', practices_path %>
+
+</div>

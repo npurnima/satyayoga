@@ -1,0 +1,13 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to'Courses', courses_path %> > <%= 'Edit A Assigned Course' %>
+
+</div>
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+<h2>Edit the Assigned Course To A Saadhaka</h2>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @usercourse %> |
+<%= link_to 'Back', usercourses_path %>
+</div>

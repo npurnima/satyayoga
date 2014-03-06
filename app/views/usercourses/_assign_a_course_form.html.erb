@@ -1,0 +1,35 @@
+<%= form_for(@usercourse,:url => {:action => 'create_usercourse',:controller => 'usercourses',:id => params[:id]}) do |f| %>
+    <% if @usercourse.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@usercourse.errors.count, "error") %> prohibited this usercourse from being saved:</h2>
+
+          <ul>
+            <% @usercourse.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :user_id %>
+      <%= f.label :course_id %>
+
+      <%= f.collection_select(:course_id,@courses,:id,:name) %>
+    </div>   <br/>  </br>
+
+    <div class="field">
+      <%= f.label :no_of_names_per_day %>
+      <%= f.number_field :no_of_names_per_day %>
+    </div>
+    <div class="field">
+      <% f.label :guide_id %>
+      <% params[:guide_id] = session[:user_id] %>
+      <%= f.hidden_field :guide_id %>
+    </div>
+
+    <br/>
+    <div class="actions">
+      <%= f.submit "Assign Course" %>
+    </div>
+<% end %>    <br/>

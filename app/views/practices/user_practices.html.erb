@@ -1,0 +1,53 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home', homepages_path %>  > <%= link_to'My page',mypage_path(session[:user_id]) %> ><%= 'My Practices' %>
+</div>
+<div class="main-content-user-practice">
+  <p id="notice"><%= notice %></p>
+  <h2>List Of All Practices</h2>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Guide</th>
+      <th>Date</th>
+      <th>Course</th>
+      <th>Course from number</th>
+      <th>Course to number</th>
+
+      <th>Experience</th>
+      <th>Add the Attendants list</th>
+      <th> Owner Options</th>
+
+
+    </tr>
+
+    <% @practices.each do |practice| %>
+        <tr>
+          <% @user = User.find(practice.guide_id) %>
+          <% @course = Course.find(practice.course_id) %>
+
+          <td><%=link_to image_tag(@user.photo,:class => 'img-icon'),user_path(@user.id)  %></td>
+          <td><%= link_to @user.firstname, user_path(@user.id) %></td>
+          <td><%= practice.date.to_date %></td>
+          <td><%= @course.name %></td>
+          <td><%= practice.course_from_number %></td>
+          <td><%= practice.course_to_number %></td>
+
+          <td><%= practice.experience %></td>
+          <td><%= link_to 'Add',assign_a_practice_path(practice.id) %></td>
+          <td><% if session[:user_id] == practice.owner %>
+                <%= link_to 'Edit', edit_practice_path(practice) %> |
+                <%= link_to 'Destroy', practice, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+
+  <br />
+  <div class="links">
+    <% if session[:user_id] && session[:privilage] <=2 %>
+       <h4> <%= link_to 'Add New Practice', new_practice_path %> </h4>
+    <% end %>
+  </div>
+</div>

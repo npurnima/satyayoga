@@ -1,0 +1,49 @@
+<div class="main-content">
+<p id="notice"><%= notice %></p>
+<h2>List Of All <%= session[:username].capitalize  %>'s Practices</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Guide</th>
+    <th>Date</th>
+    <th>Course</th>
+    <th>Course from number</th>
+    <th>Course to number</th>
+
+    <th>Experience</th>
+    <th>Add The Attendants List</th>
+    <th></th>
+    <th></th>
+
+  </tr>
+
+<% @practices.each do |practice| %>
+  <tr>
+       <%  @user = User.find(practice.guide_id) %>
+    <% @course = Course.find(practice.course_id) %>
+
+    <td><%=link_to image_tag(@user.photo,:class => 'img-icon'),user_path(@user.id)  %></td>
+    <td><%= link_to @user.firstname, user_path(@user.id) %></td>
+    <td><%= practice.date.to_date %></td>
+    <td><%= @course.name %></td>
+    <td><%= practice.course_from_number %></td>
+    <td><%= practice.course_to_number %></td>
+
+    <td><%= practice.experience %></td>
+    <td><%= link_to 'Add',assign_a_practice_path(practice.id) %></td>
+    <% if session[:user_id] == practice.owner %>
+        <td><%= link_to 'Edit', edit_practice_path(practice) %></td>
+        <td><%= link_to 'Destroy', practice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+ <div class="links">
+   <% if session[:user_id] && session[:privilage] <=2 %>
+        <%= link_to 'Add New Practice', new_practice_path %>
+   <% end %>
+ </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="main-content">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Topic:</b>
+  <%= @experience.topic %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @experience.owner %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @experience.description %>
+</p>
+
+<p>
+  <b>No of views:</b>
+  <%= @experience.no_of_views %>
+</p>
+
+
+<%= link_to 'Edit', edit_experience_path(@experience) %> |
+<%= link_to 'Back', experiences_path %>
+
+</div>

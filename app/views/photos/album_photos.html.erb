@@ -1,0 +1,33 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Albums',albums_path %> >
+  <%=link_to @album.title,all_album_photos_path(params[:id]) %> > <%= 'Photos' %>
+</div>
+<div class="main-content">
+  <p id ="notice"><%= notice %>  </p>
+  <h3> <%= @photos.count() %> photos in  <%= @album.title %> Album
+  <%= link_to 'Slide Show',slideshow_path(params[:id]),:class=>'slide-show-link' %>
+
+</h3>
+
+
+  <% i = 0 %>
+
+<%  @photos.each do |photo| %>
+    <div class="photo-item">
+      <% i = i+1 %>
+    <p>    <%= link_to image_tag(photo.title, :class =>'alb-small-img'),photos_show_path(photo.album_id,(i.to_i)-1) %></p>
+     <p>   <% photo.caption %> <%"#{i}/#{@photos.count()}" %> </p>
+
+    <% if session[:user_id] == @album.owner %>
+          <%= link_to 'Edit',edit_photo_path(photo) %>
+
+     <% end %>
+    </div>
+ <% end %>
+</div>
+
+<div class="slide-show-link">
+  <br/>
+  <h3><%= link_to 'Add More Photos', album_new_multiple_photos_path(@album.id)%>  </h3>
+
+</div>

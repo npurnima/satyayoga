@@ -1,0 +1,13 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to'Saadhakas', saadhakas_by_guide_path(session[:user_id]) %> > <%= 'List of Assigned Courses' %>
+
+</div>
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <h2>List of Courses Assigned to <%= @user.firstname %>
+  <%= image_tag(@user.photo,:class => 'img-icon') %>      </h2>
+
+  <%= render 'saadhakas_practices' %>
+   <br />
+
+</div>

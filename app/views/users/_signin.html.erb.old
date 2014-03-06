@@ -1,0 +1,16 @@
+<%= form_for :signin, url: user_signin_path(0)  do |f| %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>    <br/>
+
+    <%= f.submit 'SignIn' %>
+<%end%>
+       <br/>
+
+<div class="cleaner"></div>
+<p>    <%= link_to 'Forgot Password?',user_forgot_password_path(0) %></p>
+<p> Please Register if you are a New User <div class="rc_btn_02"><%= link_to  'Register', new_user_path %> </div></p>
+<div class="cleaner"></div>

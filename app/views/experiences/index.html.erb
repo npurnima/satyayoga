@@ -1,0 +1,23 @@
+ <div class="header-breadcrumbs">
+   <%= link_to 'Home',homepages_path %> > <%= 'Discussions' %>
+ </div>
+
+
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <h2> List of Topics that are under discussion  </h2>
+  <ul>
+  <% @experiences.each do |exp| %>
+
+      <li><%= link_to exp.topic, expcomments_path(exp.id) %>    ( <%= exp.expcomments.count() %> Comments.. )
+        started on <%= exp.created_at.to_date  %></li>
+
+  <% end %>
+  </ul>
+  <h3> Start A New Topic </h3>
+    <% if session[:user_id] %>
+      <%= render 'experiences/form' %>
+    <% else %>
+       <%= link_to 'Add New Topic',new_experience_path %>
+    <%end%>
+</div>

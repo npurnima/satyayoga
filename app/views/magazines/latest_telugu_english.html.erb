@@ -1,0 +1,58 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to 'Magazines',latest_telugu_english_magazines_path %> >
+  <%= 'Latest Telugu and English Magazines' %>
+</div>
+<div class="leftbar">
+  <%= render 'magazine_options'  %>
+</div>
+
+
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <h2>The Latest Telugu and English Magazines</h2>
+  <div class="mag-each">
+  <% @telugu_latest.each do |magazine|%>
+
+        Latest <%= magazine.languagewritten %> <br/>
+        <b> <%= magazine.title %>   </b>
+
+      <div class="medium-img">
+        <%= link_to  image_tag(magazine.coverpageimage,:class => 'medium-img'), reading_magazine_path(magazine.id) %>
+      </div>
+      <br/>
+      <i>Published In  <%=Magazine.get_month(magazine.month) %>/<%= magazine.year %></i>
+      <div class="links">
+        <% if session[:user_id] && session[:privilage] == 1 %>
+
+            <%= link_to 'Edit', edit_magazine_path(magazine) %> |
+            <%= link_to 'Back', magazines_path %>
+        <% end  %>  <br/>
+      </div>
+  <% end %>
+    </div>
+    <div class="mag-each">
+  <% @english_latest.each do |magazine|%>
+
+        Latest  <%= magazine.languagewritten %>  <br/>
+        <b> <%= magazine.title %>     </b>
+
+      <div class="medium-img">
+        <%= link_to  image_tag(magazine.coverpageimage,:class => 'medium-img'), reading_magazine_path(magazine.id) %>
+      </div>
+       <br/>
+        <i> Published In <%= Magazine.get_month(magazine.month) %>/<%= magazine.year %> </i>
+      <div class="links">
+        <% if session[:user_id] && session[:privilage] == 1 %>
+
+           <%= link_to 'Edit', edit_magazine_path(magazine) %> |
+            <%= link_to 'Back', magazines_path %>
+        <% end  %>  <br/>
+      </div>
+  <% end %>
+  </div>
+  <div class="links">
+    <% if session[:user_id] && session[:privilage] == 1 %>
+         <%= link_to 'Add New Magazine',new_magazine_path %> <br/>
+    <% end %>
+  </div>
+</div>

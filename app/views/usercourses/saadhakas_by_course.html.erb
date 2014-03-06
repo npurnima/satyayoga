@@ -1,0 +1,49 @@
+<div class="header-breadcrumbs">
+  <%= link_to 'Home',homepages_path %> > <%= link_to'Courses', courses_path %> > <%= 'List of Saadhakas Assigned ' %>
+
+</div>
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <h2>List of Saadhakas Assigned to '<%= @course.name %>'  </h2>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Saadhaka</th>
+       <th>Names per day</th>
+      <th>Course Number From</th>
+      <th>Course Number To</th>
+      <th>Practiced On</th>
+      <th>Guide</th>
+       <th>Assigned On </th>
+      <th> Practice Type </th>
+    </tr>
+
+    <% @usercourses.each do |usercourse| %>
+
+          <% @user = User.find(usercourse.user_id) if usercourse.user_id %>
+          <% @course = Course.find(usercourse.course_id)  if usercourse.course_id %>
+          <% @guide = User.find(usercourse.guide_id) if usercourse.guide_id %>
+
+        <tr>
+          <% if @user %>
+            <td><%= link_to image_tag(@user.photo,:class => 'img-icon'),courses_by_saadhaka_path(@user.id) %> </td>
+            <td> <%= link_to  @user.firstname + @user.lastname ,courses_by_saadhaka_path(@user.id)  %></td>
+           <%end%>
+          <td><%= usercourse.no_of_names_per_day %></td>
+          <td><%= usercourse.course_no_from %></td>
+          <td><%= usercourse.course_no_to %></td>
+          <td><%= usercourse.date %></td>
+          <td><%= @guide.firstname if @guide %></td>
+
+          <td><%=  usercourse.created_at.to_date %></td>
+          <td><%= usercourse.practice_type %></td>
+
+        </tr>
+        <%end%>
+
+  </table>
+
+  <br />
+
+</div>

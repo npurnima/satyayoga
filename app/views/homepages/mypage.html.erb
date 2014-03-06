@@ -1,0 +1,76 @@
+<div class="header-breadcrumbs" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <%= link_to 'Home', homepages_path %>  > <%= 'My page' %>
+</div>
+
+<div class="leftbar">
+
+    <%= render 'mypage_leftbar_options' %>
+
+</div>
+
+<div class="main-content">
+  <p id="notice"><%= notice %></p>
+  <div class="person">
+   <div class="person-img"> <%= image_tag @user.photo, :class => 'medium-img'  %>   </div>
+   <div class="person-details">
+           <b> Name:</b><%= @user.firstname %>.<%= @user.lastname %> <br/>   <br/>
+           <b> Username:</b><%= @user.username %>     <br/> <br/>
+           <b> Current Role:</b> <%= Role.find_by_id(Userrole.find_by_user_id(@user.id).role_id).name %>  <br/><br/>
+           <b>Number of Discussion Comments:</b>
+                <b id="user-comments-link"><%= link_to @usercomments.count.to_i, exp_user_comment_path  %> </b>  <br/>  <br/>
+           <b>Number of Event Comments:</b>
+                <b id="user-eventcomments-link"> <%= link_to @eventcomments.count.to_i, user_eventcomments_path %> </b> <br/><br/>
+            <% if session[:privilage] <= 3 %>
+               <b> Number of Courses:</b>
+                    <b id="user-courses-link"><%= link_to  @usercourses.count.to_i,user_courses_path %> </b> <br/> <br/>
+               <b> Number of Albums: </b>
+                    <b id="user-albums-link"><%= link_to  @useralbums.count.to_i,user_albums_path %> </b>  <br/>  <br/>
+            <% end %>
+            <% if session[:privilage] <= 2 %>
+                <b>Number of Saadhaka :</b>
+                    <b id="user-saadhakas-link"> <%= link_to  @usersaadhakas.count.to_i,saadhakas_by_guide_path %> </b> <br/> <br/>
+                <b>Number of Events :</b>
+                    <b id="user-events-link"> <%= link_to  @userevents.count.to_i,user_events_path %>  </b>   <br/>  <br/>
+            <% end %>
+
+   </div>
+
+    <div>
+
+          <% if session[:privilage]== 3 %>
+            <%=image_tag @guide.photo, :class=>'img-icon' %>     <br/>  <br/>
+             <%= link_to 'Share your experience with guide', contact_guide_path  %></div>
+          <% end %>
+  </div>
+  <br/>
+  <div class="divider"><p></p> <p></p></div>
+
+
+  <!-- -------  user/saadhakas practices on courses --------   -->
+  <div class="user-practices">
+      <% if session[:privilage]<= 3 %>
+
+          <h2>List of Courses Assigned to <%= @user.firstname %>  </h2>
+
+         <%= render 'usercourses/saadhakas_practices' %>
+      <% end %>
+   </div>
+
+  <!-- Subscribe or un subscribe from the event notification list       -->
+
+  <div class="email-subscribe">
+    <% if (@user.email_subscriber == false||@user.email_subscriber ==  nil) %>
+
+        <%= form_tag(:action =>'email_subscribe', :controller=>'users',:id => session[:user_id]) %>
+        <%= check_box_tag (:email_subscriber),{:value => "true", :checked =>true,:action=>'email_subscriber',:id => session[:user_id]}  %>  Subscribe for Event Notifications
+        <%= submit_tag 'Subscribe' %>
+    <% else %>
+        <%= form_tag(:action =>'email_unsubscribe', :controller=>'users',:id => session[:user_id]) %>
+        <%= check_box_tag (:email_subscriber),{:value => "false", :checked =>true,:action=>'email_subscriber',:id => session[:user_id]}  %>  UnSubscribe for Event Notifications
+        <%= submit_tag 'Unsubscribe' %>
+
+    <% end %>
+  </div>
+
+</div>
+

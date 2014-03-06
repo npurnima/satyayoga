@@ -1,0 +1,42 @@
+
+<%= form_for(@userrole ,:url=> {:action => 'create',:controller =>'userroles',:id => params[:id]}) do |f| %>
+  <% if @userrole.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@userrole.errors.count, "error") %> prohibited this userrole from being saved:</h2>
+
+      <ul>
+      <% @userrole.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% f.label :user_id %>
+    <% params[:user_id] = params[:id] %>
+    <%= f.hidden_field :user_id %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :role_id %>
+    <%= f.collection_select :role_id, @roles,:id,:name, :promt => true %>
+    <%= params[:role_id] %>
+  </div>   <br/>    </br>
+  <div class="field">
+     <%= f.label :guide_id %>
+     <%= f.select :guide_id,options_for_select(Userrole::Userrole.find_guides_names) %>
+  </div>   <br/>
+  <div class="field">
+    <% f.label :assigned_by %>
+    <% params[:assigned_by] = session[:username]  %>
+    <%= f.hidden_field :assigned_by %>
+  </div>
+    <br/><br/>
+  <div class="actions">
+    <%= f.submit 'Assign a Role' %>
+
+  </div>
+<% end %>
+

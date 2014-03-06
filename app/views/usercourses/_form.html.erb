@@ -1,0 +1,46 @@
+<%= form_for(@usercourse,:url => {:action => 'create',:controller => 'usercourses',:id => params[:id]}) do |f| %>
+  <% if @usercourse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@usercourse.errors.count, "error") %> prohibited this usercourse from being saved:</h2>
+
+      <ul>
+      <% @usercourse.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+
+    <%= f.select :user_id, options_for_select(Usercourse::find_saadhakas_names(session[:user_id])) %>
+  </div>   <br/>  </br>
+  <div class="field">
+    <% f.label :course_id %>
+    <% @usercourse.course_id = params[:id] %>
+    <%= f.hidden_field :course_id %>
+  </div>
+  <div class="field">
+    <%= f.label :no_of_names_per_day %>
+    <%= f.number_field :no_of_names_per_day %>
+  </div>
+  <div class="field">
+    <% f.label :guide_id %>
+    <% params[:guide_id] = session[:user_id] %>
+    <%= f.hidden_field :guide_id %>
+  </div>      <br/>
+   <%= f.label :practice_start_date %>
+   <%= f.text_field :practice_start_date, :class=> 'datepicker' %>     <br/>
+
+   <%= f.label :practice_time %>
+   <%= f.select :practice_time,(1..30).to_a %>Min     <br/>    </br>
+
+   <%= f.label :rest_time %>
+   <%= f.select  :rest_time,(1..30).to_a  %>Min  <br/>   </br>
+
+  <br/>
+  <div class="actions">
+    <%= f.submit "Assign Course" %>
+  </div>
+<% end %>    <br/>

@@ -1,0 +1,17 @@
+<div class= "main-content">
+<p id="notice"><%= notice %></p>
+<p>Course:
+  <%= @course.name %> </br>  </p>
+<p> Course Description:
+  <%= @course.description %> </br>  </p>
+<p> FilePath:
+
+ <%= link_to @course.filepath, reading_course_path(@course.id) %> </br>  </p>
+
+
+
+
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
+ </div>

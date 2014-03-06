@@ -1,0 +1,47 @@
+<% if session[:user_id] && session[:privilage] ==2 %>
+    
+   <%= link_to 'Course Access'  %> <br/>
+        <div class="sub-leftbar">
+           <%= link_to 'List of My courses', user_courses_path(session[:user_id]) %><br/>
+           <%= link_to 'Add a New Course', new_course_path %><br/>
+        </div>
+        
+
+
+   <%= link_to 'Group Practices Access'  %> <br/>
+        <div class="sub-leftbar">
+
+           <%= link_to 'List of My practices',user_practices_path(session[:user_id]) %><br/>
+           <%= link_to 'Add a New group practice', new_practice_path %><br/>
+        </div>
+
+    <%= link_to 'Magazine Access' %>  <br/>
+
+        <div class="sub-leftbar">
+           <%= link_to 'My Magazines', user_magazines_path(session[:user_id]) %> <br/>
+           <%= link_to 'Add a Magazine', new_magazine_path %> <br/>
+        </div>
+
+    <%= link_to 'Saadhaka Access'  %> <br/>
+        <div class="sub-leftbar">
+           <%= link_to 'List of Saadhakas', saadhakas_by_guide_path(session[:user_id]) %><br/>
+        </div>
+      
+
+   <%= link_to 'Event Access'  %> <br/>
+
+        <div class="sub-leftbar">
+           <%= link_to 'List of My Events',user_events_path(session[:user_id]) %><br/>
+           <%= link_to 'Add a New Event', new_event_path %><br/>
+        </div>
+
+   <%= link_to 'Album Access'  %>  <br/>
+        <div class="sub-leftbar">
+           <%= link_to 'List of My Albums', user_albums_path(session[:user_id]) %><br/>
+           <%= link_to 'Add a New Album', new_album_path %><br/>
+        </div>
+      
+
+
+    
+<% end %>
